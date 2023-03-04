@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 export default function PlayButton() {
     const [playing, setPlaying] = useState(false);
     const stat = useSelector((state) => state.icon);
-    console.log(stat);
     const play = () => {
         setPlaying(true);
     };

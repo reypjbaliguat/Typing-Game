@@ -1,4 +1,4 @@
-import Providers from "../reducers/provider";
+import Providers from "../provider";
 import "./globals.css";
 
 export default function RootLayout({
