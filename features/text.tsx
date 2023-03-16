@@ -5,6 +5,11 @@ interface text {
     status: String;
     content: String;
     value: String;
+    gameOver: Boolean;
+    playing: Boolean;
+    playCount: number;
+    time: number;
+    wordsPerMinute: number;
 }
 
 // Type for our state
@@ -18,6 +23,11 @@ const initialState: TextState = {
         status: "",
         content: "",
         value: "",
+        gameOver: false,
+        playing: false,
+        playCount: 0,
+        time: 0,
+        wordsPerMinute: 0,
     },
 };
 
@@ -33,23 +43,51 @@ export const textSlice = createSlice({
         setValue: (state, action) => {
             state.text.value = action.payload;
         },
+        setGameOver: (state, action) => {
+            state.text.gameOver = action.payload;
+        },
+        setPlaying: (state, action) => {
+            state.text.playing = action.payload;
+        },
+        addSecondToTime: (state) => {
+            state.text.time = state.text.time + 1;
+        },
+        resetTime: (state) => {
+            state.text.time = 0;
+        },
+        setWordPerMinute: (state, action) => {
+            state.text.wordsPerMinute = action.payload;
+        },
+        addPlayCount: (state) => {
+            state.text.playCount = state.text.playCount + 1;
+        },
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchText.pending, (state) => {
-            state.text.status = "loading";
-            // both `state` and `action` are now correctly typed
-            // based on the slice state and the `pending` action creator
-        }),
-            builder.addCase(fetchText.fulfilled, (state, { payload }) => {
-                state.text = payload;
-            }),
-            builder.addCase(fetchText.rejected, (state) => {
+        builder
+            .addCase(fetchText.pending, (state) => {
+                state.text.status = "loading";
+                // both `state` and `action` are now correctly typed
+                // based on the slice state and the `pending` action creator
+            })
+            .addCase(fetchText.fulfilled, (state, { payload }) => {
+                state.text.content = payload.content;
+                state.text.status = "loaded";
+            })
+            .addCase(fetchText.rejected, (state) => {
                 state.text.status = "failed";
             });
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { setValue } = textSlice.actions;
+export const {
+    setValue,
+    setGameOver,
+    setPlaying,
+    addSecondToTime,
+    resetTime,
+    setWordPerMinute,
+    addPlayCount,
+} = textSlice.actions;
 
 export default textSlice.reducer;
