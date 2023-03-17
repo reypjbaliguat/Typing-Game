@@ -1,32 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import {
-    setPlaying,
-    fetchText,
-    addSecondToTime,
-    addPlayCount,
-} from "@/features/text";
+import { setPlaying, fetchText } from "@/features/text";
 
 export default function PlayButton() {
     const dispatch = useDispatch<AppDispatch>();
     const { text } = useSelector((state: RootState) => state.text);
-    const { playing, time, playCount } = text;
+    const { playing, time } = text;
 
     const fetchNewContent = async () => {
         dispatch(fetchText());
     };
-    useEffect(() => {
-        if (playing) {
-            const id = setInterval(() => dispatch(addSecondToTime()), 1000);
-
-            return () => {
-                clearInterval(id);
-            };
-        }
-    }, [dispatch, playing]);
 
     return (
         <div className="flex justify-center">
@@ -41,14 +27,7 @@ export default function PlayButton() {
             {!playing && (
                 <button
                     onClick={() => {
-                        if (playCount === 0) {
-                            dispatch(setPlaying(true));
-                            dispatch(addPlayCount());
-                        } else {
-                            fetchNewContent();
-                            dispatch(setPlaying(true));
-                            dispatch(addPlayCount());
-                        }
+                        dispatch(setPlaying(true));
                     }}
                     className={`bg-green text-white p-3 text-center rounded-lg w-60 text-2xl `}
                 >

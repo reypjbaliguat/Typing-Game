@@ -6,7 +6,6 @@ import {
     fetchText,
     setGameOver,
     setPlaying,
-    resetTime,
     setWordPerMinute,
 } from "@/features/text";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,8 +30,10 @@ const TextContainer = () => {
             dispatch(setWordPerMinute(result));
             dispatch(setGameOver(true));
             dispatch(setPlaying(false));
+            dispatch(fetchText());
         }
     }, [value, time, content, textValue, letterArr, dispatch]);
+
     useEffect(() => {
         const controller = new AbortController();
         dispatch(fetchText());

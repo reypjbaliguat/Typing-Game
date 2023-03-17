@@ -3,7 +3,12 @@
 import { AppDispatch, RootState } from "@/store/store";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { resetTime, setValue, setWordPerMinute } from "../features/text";
+import {
+    addSecondToTime,
+    resetTime,
+    setValue,
+    setWordPerMinute,
+} from "../features/text";
 
 export default function TextInput() {
     const [componentTextValue, setComponentTextValue] = useState("");
@@ -19,18 +24,22 @@ export default function TextInput() {
         if (playing) {
             textAreaRef.current?.focus();
             dispatch(setWordPerMinute(0));
-            // dispatch(resetTime());
+            dispatch(resetTime());
+            const id = setInterval(() => dispatch(addSecondToTime()), 1000);
+
+            return () => {
+                clearInterval(id);
+            };
         }
     }, [playing, dispatch]);
 
     useEffect(() => {
         setComponentTextValue("");
     }, [content]);
-
     return (
         <textarea
             ref={textAreaRef}
-            className={`rounded-lg w-full border-2 resize-none sm:p-16 p-5 text-3xl sm:mb-10 mb-5 ${
+            className={`transition-all rounded-lg w-full border-2 resize-none sm:p-16 p-5 text-3xl sm:mb-10 mb-5 ${
                 playing
                     ? "border-green outline-green"
                     : "border-black outline-black"

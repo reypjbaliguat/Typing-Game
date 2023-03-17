@@ -7,7 +7,6 @@ interface text {
     value: String;
     gameOver: Boolean;
     playing: Boolean;
-    playCount: number;
     time: number;
     wordsPerMinute: number;
 }
@@ -25,7 +24,6 @@ const initialState: TextState = {
         value: "",
         gameOver: false,
         playing: false,
-        playCount: 0,
         time: 0,
         wordsPerMinute: 0,
     },
@@ -57,9 +55,6 @@ export const textSlice = createSlice({
         },
         setWordPerMinute: (state, action) => {
             state.text.wordsPerMinute = action.payload;
-        },
-        addPlayCount: (state) => {
-            state.text.playCount = state.text.playCount + 1;
         },
     },
     extraReducers: (builder) => {

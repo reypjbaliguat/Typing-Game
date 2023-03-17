@@ -10,7 +10,7 @@ export default function Result() {
     return (
         <div className="mt-7">
             <p className="text-4xl text-center">
-                Speed: {wordsPerMinute} Words Per Minute{" "}
+                Speed: {wordsPerMinute} Words Per Minute
             </p>
         </div>
     );
