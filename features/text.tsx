@@ -82,7 +82,6 @@ export const {
     addSecondToTime,
     resetTime,
     setWordPerMinute,
-    addPlayCount,
 } = textSlice.actions;
 
 export default textSlice.reducer;
