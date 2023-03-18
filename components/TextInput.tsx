@@ -1,6 +1,6 @@
 "use client";
 
-import { AppDispatch, RootState } from "@/store/store";
+import { AppDispatch, RootState } from "@/app/store/store";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {

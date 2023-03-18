@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store/store";
+import { AppDispatch, RootState } from "@/app/store/store";
 import { setPlaying, fetchText } from "@/features/text";
 
 export default function PlayButton() {

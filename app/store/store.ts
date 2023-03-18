@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import { iconSlice } from "../features/icon";
-import { authSlice } from "../features/auth";
-import { textSlice } from "../features/text";
+import { iconSlice } from "../../features/icon";
+import { authSlice } from "../../features/auth";
+import { textSlice } from "../../features/text";
 
 // config the store
 const store = configureStore({

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-import { RootState } from "@/store/store";
+import { RootState } from "@/app/store/store";
 import { useSelector } from "react-redux";
 
 export default function Result() {

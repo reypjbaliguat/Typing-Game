@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import Loading from "../components/Loading";
-import { AppDispatch, RootState } from "@/store/store";
+import { AppDispatch, RootState } from "@/app/store/store";
 import {
     fetchText,
     setGameOver,
