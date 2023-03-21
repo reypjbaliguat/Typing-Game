@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 const TextContainer = () => {
     const dispatch = useDispatch<AppDispatch>();
     const { text } = useSelector((state: RootState) => state.text);
-    const { status, content, value, time } = text;
+    const { status, content, value, time, gameOver, playing } = text;
     let textValue = value && value.split("");
     let letterArr = content && content.split("").splice(0, 100);
 
@@ -30,14 +30,27 @@ const TextContainer = () => {
             dispatch(setWordPerMinute(result));
             dispatch(setGameOver(true));
             dispatch(setPlaying(false));
-            dispatch(fetchText());
         }
     }, [value, time, content, textValue, letterArr, dispatch]);
 
     useEffect(() => {
-        const controller = new AbortController();
-        dispatch(fetchText());
-        return () => controller.abort();
+        if (
+            letterArr &&
+            textValue &&
+            letterArr.join("") === textValue.join("")
+        ) {
+            const promise = dispatch(fetchText());
+            return () => {
+                promise.abort();
+            };
+        }
+    }, [gameOver, playing]);
+
+    useEffect(() => {
+        const promise = dispatch(fetchText());
+        return () => {
+            promise.abort();
+        };
     }, [dispatch]);
 
     return (

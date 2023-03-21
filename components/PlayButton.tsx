@@ -11,7 +11,10 @@ export default function PlayButton() {
     const { playing, time } = text;
 
     const fetchNewContent = async () => {
-        dispatch(fetchText());
+        const promise = dispatch(fetchText());
+        return () => {
+            promise.abort();
+        };
     };
 
     return (

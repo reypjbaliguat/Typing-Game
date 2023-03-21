@@ -1,8 +1,8 @@
 import Header from "../components/Header";
 
-import PlayButton from "../components/PlayButton";
-import TextContainer from "../components/TextContainer";
-import TextInput from "../components/TextInput";
+import PlayButton from "@/components/PlayButton";
+import TextContainer from "@/components/TextContainer";
+import TextInput from "@/components/TextInput";
 import Result from "@/components/Result";
 
 export default function Home() {
