@@ -8,7 +8,7 @@ import {
     resetTime,
     setValue,
     setWordPerMinute,
-} from "../features/text";
+} from "../../features/text";
 
 export default function TextInput() {
     const [componentTextValue, setComponentTextValue] = useState("");

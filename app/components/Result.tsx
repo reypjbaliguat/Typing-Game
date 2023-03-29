@@ -1,12 +1,11 @@
 "use client";
 import React from "react";
 
-import { RootState } from "@/app/store/store";
-import { useSelector } from "react-redux";
+interface ResultProps {
+    wordsPerMinute: number;
+}
 
-export default function Result() {
-    const { text } = useSelector((state: RootState) => state.text);
-    const { wordsPerMinute } = text;
+export default function Result({ wordsPerMinute }: ResultProps) {
     return (
         <div className="mt-7">
             <p className="text-4xl text-center">

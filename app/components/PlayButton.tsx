@@ -4,6 +4,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/app/store/store";
 import { setPlaying, fetchText } from "@/features/text";
+import Button from "./Button";
 
 export default function PlayButton() {
     const dispatch = useDispatch<AppDispatch>();
@@ -17,25 +18,25 @@ export default function PlayButton() {
         };
     };
 
+    const handlePlay = () => {
+        dispatch(setPlaying(true));
+    };
+
     return (
         <div className="flex justify-center">
             {!playing && (
-                <button
-                    onClick={fetchNewContent}
-                    className={`bg-green text-white mr-2 p-3 text-center rounded-lg w-60 text-2xl `}
-                >
-                    New Content
-                </button>
+                <Button
+                    haveMargin={true}
+                    handleClick={fetchNewContent}
+                    text={"New Content"}
+                />
             )}
             {!playing && (
-                <button
-                    onClick={() => {
-                        dispatch(setPlaying(true));
-                    }}
-                    className={`bg-green text-white p-3 text-center rounded-lg w-60 text-2xl `}
-                >
-                    Play
-                </button>
+                <Button
+                    haveMargin={false}
+                    handleClick={handlePlay}
+                    text={"Play"}
+                />
             )}
             {playing && <p className="text-5xl"> {time}</p>}
         </div>
