@@ -1,41 +1,21 @@
 "use client";
 
-import { AppDispatch, RootState } from "@/app/store/store";
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-    addSecondToTime,
-    resetTime,
-    setValue,
-    setWordPerMinute,
-} from "../../features/text";
+import { Dispatch, RefObject, SetStateAction } from "react";
 
-export default function TextInput() {
-    const [componentTextValue, setComponentTextValue] = useState("");
-    const { text } = useSelector((state: RootState) => state.text);
-    const dispatch = useDispatch<AppDispatch>();
-    const textAreaRef = useRef<HTMLTextAreaElement>(null);
-    const { content, playing } = text;
-    useEffect(() => {
-        dispatch(setValue(componentTextValue));
-    }, [componentTextValue, dispatch]);
+interface TextInputProps {
+    componentTextValue: string;
+    setComponentTextValue: Dispatch<SetStateAction<string>>;
+    content: String;
+    playing: Boolean;
+    textAreaRef: RefObject<HTMLTextAreaElement>;
+}
 
-    useEffect(() => {
-        if (playing) {
-            textAreaRef.current?.focus();
-            dispatch(setWordPerMinute(0));
-            dispatch(resetTime());
-            const id = setInterval(() => dispatch(addSecondToTime()), 1000);
-
-            return () => {
-                clearInterval(id);
-            };
-        }
-    }, [playing, dispatch]);
-
-    useEffect(() => {
-        setComponentTextValue("");
-    }, [content]);
+export default function TextInput({
+    componentTextValue,
+    setComponentTextValue,
+    playing,
+    textAreaRef,
+}: TextInputProps) {
     return (
         <textarea
             ref={textAreaRef}

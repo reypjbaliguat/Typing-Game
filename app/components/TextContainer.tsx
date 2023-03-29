@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
+import Letters from "./Letters";
 import Loading from "./Loading";
-import { AppDispatch } from "@/app/store/store";
 
 interface TextContainerProps {
     status: String;
@@ -18,29 +18,7 @@ const TextContainer = ({
             {status === "loading" ? (
                 <Loading />
             ) : (
-                <div>
-                    {letterArr &&
-                        letterArr.map((letter, i) => {
-                            return (
-                                <span
-                                    key={i}
-                                    className={`text-4xl inline text-black ${
-                                        textValue &&
-                                        letterArr &&
-                                        textValue[i] === letter
-                                            ? "text-green"
-                                            : textValue &&
-                                              textValue[i] !== letter &&
-                                              textValue.length > i
-                                            ? "text-red"
-                                            : ""
-                                    }`}
-                                >
-                                    {letter}
-                                </span>
-                            );
-                        })}
-                </div>
+                <Letters textValue={textValue} letterArr={letterArr} />
             )}
         </div>
     );

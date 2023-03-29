@@ -1,27 +1,21 @@
 "use client";
 
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/app/store/store";
-import { setPlaying, fetchText } from "@/features/text";
 import Button from "./Button";
 
-export default function PlayButton() {
-    const dispatch = useDispatch<AppDispatch>();
-    const { text } = useSelector((state: RootState) => state.text);
-    const { playing, time } = text;
+interface PlayButtonProps {
+    handlePlay: () => void;
+    fetchNewContent: () => void;
+    playing: Boolean;
+    time: number;
+}
 
-    const fetchNewContent = async () => {
-        const promise = dispatch(fetchText());
-        return () => {
-            promise.abort();
-        };
-    };
-
-    const handlePlay = () => {
-        dispatch(setPlaying(true));
-    };
-
+export default function PlayButton({
+    handlePlay,
+    fetchNewContent,
+    playing,
+    time,
+}: PlayButtonProps) {
     return (
         <div className="flex justify-center">
             {!playing && (
