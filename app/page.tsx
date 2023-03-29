@@ -2,10 +2,10 @@
 
 import Header from "./components/Header";
 
-import PlayButton from "@/app/components/PlayButton";
-import TextContainer from "@/app/components/TextContainer";
-import TextInput from "@/app/components/TextInput";
-import Result from "@/app/components/Result";
+import PlayButton from "./components/PlayButton";
+import TextContainer from "./components/TextContainer";
+import TextInput from "./components/TextInput";
+import Result from "./components/Result";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./store/store";
 import {
@@ -16,7 +16,7 @@ import {
     setPlaying,
     setValue,
     setWordPerMinute,
-} from "@/features/text";
+} from "../features/text";
 import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
