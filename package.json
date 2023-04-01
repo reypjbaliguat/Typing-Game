@@ -7,7 +7,15 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "test": "jest --watch --coverage"
+        "test": "jest --watch --coverage",
+        "format": "prettier --ignore-path .gitignore --tab-width 4 --write \"**/*.{ts,tsx,css,scss}\""
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest",
+            "plugin:jest-dom/recommended"
+        ]
     },
     "dependencies": {
         "@next/font": "13.1.6",
@@ -20,6 +28,7 @@
         "eslint-config-next": "13.1.6",
         "next": "13.1.6",
         "next-redux-wrapper": "^8.1.0",
+        "prettier": "^2.8.7",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-redux": "^8.0.5",
