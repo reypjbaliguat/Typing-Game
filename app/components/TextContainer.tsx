@@ -14,7 +14,10 @@ const TextContainer = ({
     letterArr,
 }: TextContainerProps) => {
     return (
-        <div className="flex sm:basis-3/5 sm:my-10 my-5 border border-black sm:p-16 p-5 rounded-lg">
+        <div
+            className="flex sm:basis-3/5 sm:my-10 my-5 border border-black sm:p-16 p-5 rounded-lg"
+            data-testid="text-container"
+        >
             {status === "loading" ? (
                 <Loading />
             ) : (

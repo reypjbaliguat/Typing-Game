@@ -24,6 +24,7 @@ export default function Letter({
                     ? "text-red"
                     : ""
             }`}
+            data-testid="letter"
         >
             {letter}
         </span>

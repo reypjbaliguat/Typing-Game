@@ -57,10 +57,7 @@ export default function Home() {
             textValue &&
             letterArr.join("") === textValue.join("")
         ) {
-            const promise = dispatch(fetchText());
-            return () => {
-                promise.abort();
-            };
+            dispatch(fetchText());
         }
     };
 
