@@ -41,6 +41,9 @@ export const textSlice = createSlice({
         setValue: (state, action) => {
             state.text.value = action.payload;
         },
+        setContent: (state, action) => {
+            state.text.content = action.payload;
+        },
         setGameOver: (state, action) => {
             state.text.gameOver = action.payload;
         },
@@ -82,6 +85,7 @@ export const {
     addSecondToTime,
     resetTime,
     setWordPerMinute,
+    setContent,
 } = textSlice.actions;
 
 export default textSlice.reducer;

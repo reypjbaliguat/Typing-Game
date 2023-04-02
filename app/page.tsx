@@ -66,10 +66,7 @@ export default function Home() {
     };
 
     const fetchNewContent = async () => {
-        const promise = dispatch(fetchText());
-        return () => {
-            promise.abort();
-        };
+        dispatch(fetchText());
     };
 
     // useEffects
