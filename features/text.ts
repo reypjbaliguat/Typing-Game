@@ -59,6 +59,9 @@ export const textSlice = createSlice({
         setWordPerMinute: (state, action) => {
             state.text.wordsPerMinute = action.payload;
         },
+        reset: (state) => {
+            Object.assign(state, initialState);
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -86,6 +89,7 @@ export const {
     resetTime,
     setWordPerMinute,
     setContent,
+    reset,
 } = textSlice.actions;
 
 export default textSlice.reducer;

@@ -11,6 +11,7 @@ import { AppDispatch, RootState } from "./store/store";
 import {
     addSecondToTime,
     fetchText,
+    reset,
     resetTime,
     setGameOver,
     setPlaying,
@@ -18,6 +19,8 @@ import {
     setWordPerMinute,
 } from "../features/text";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import LeaderBoard from "./components/LeaderBoard";
 
 export default function Home() {
     // Ref
@@ -102,9 +105,17 @@ export default function Home() {
     useEffect(() => {
         setComponentTextValue("");
     }, [content]);
+    useEffect(() => {
+        return () => {
+            dispatch(reset());
+        };
+    }, []);
     return (
         <main className="flex basis-full justify-center">
-            <div className="basis-4/5 flex-wrap">
+            <div className="basis-1/5 flex-wrap mr-2">
+                <LeaderBoard />
+            </div>
+            <div className="basis-3/5 flex-wrap">
                 <Header />
                 <Result wordsPerMinute={wordsPerMinute} />
                 <TextContainer
